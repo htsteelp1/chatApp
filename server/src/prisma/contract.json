@@ -16,6 +16,10 @@
       "model": "ServerMembers",
       "namespace": "public"
     },
+    "session": {
+      "model": "Session",
+      "namespace": "public"
+    },
     "user": {
       "model": "User",
       "namespace": "public"
@@ -195,6 +199,21 @@
                   "model": "User",
                   "namespace": "public"
                 }
+              },
+              "serverMembers": {
+                "cardinality": "1:N",
+                "on": {
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "serverId"
+                  ]
+                },
+                "to": {
+                  "model": "ServerMembers",
+                  "namespace": "public"
+                }
               }
             },
             "storage": {
@@ -274,6 +293,57 @@
               "table": "serverMembers"
             }
           },
+          "Session": {
+            "fields": {
+              "data": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "expiresAt": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/timestamptz-temporal@1",
+                  "kind": "scalar"
+                }
+              },
+              "id": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "sid": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              }
+            },
+            "relations": {},
+            "storage": {
+              "fields": {
+                "data": {
+                  "column": "data"
+                },
+                "expiresAt": {
+                  "column": "expiresAt"
+                },
+                "id": {
+                  "column": "id"
+                },
+                "sid": {
+                  "column": "sid"
+                }
+              },
+              "namespaceId": "public",
+              "table": "session"
+            }
+          },
           "User": {
             "fields": {
               "createdAt": {
@@ -333,6 +403,21 @@
                 },
                 "to": {
                   "model": "Server",
+                  "namespace": "public"
+                }
+              },
+              "serverMembers": {
+                "cardinality": "1:N",
+                "on": {
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "userId"
+                  ]
+                },
+                "to": {
+                  "model": "ServerMembers",
                   "namespace": "public"
                 }
               },
@@ -592,6 +677,44 @@
               },
               "uniques": []
             },
+            "session": {
+              "columns": {
+                "data": {
+                  "codecId": "pg/text@1",
+                  "nativeType": "text",
+                  "nullable": false
+                },
+                "expiresAt": {
+                  "codecId": "pg/timestamptz-temporal@1",
+                  "nativeType": "timestamptz",
+                  "nullable": false
+                },
+                "id": {
+                  "codecId": "pg/text@1",
+                  "nativeType": "text",
+                  "nullable": false
+                },
+                "sid": {
+                  "codecId": "pg/text@1",
+                  "nativeType": "text",
+                  "nullable": false
+                }
+              },
+              "foreignKeys": [],
+              "indexes": [],
+              "primaryKey": {
+                "columns": [
+                  "id"
+                ]
+              },
+              "uniques": [
+                {
+                  "columns": [
+                    "sid"
+                  ]
+                }
+              ]
+            },
             "user": {
               "columns": {
                 "createdAt": {
@@ -640,7 +763,7 @@
         "kind": "postgres-schema"
       }
     },
-    "storageHash": "fd9e11de5e67e784b6dbc227d33df60a89a1f1d9edbb008e1e5f673f83943b54"
+    "storageHash": "d81c06dd709e25388e9f28d216b0b4b288c553a4f271c1655370313b5d2f3f04"
   },
   "execution": {
     "executionHash": "28b426bc69b6998494a0651dbd0b876e546cfa8db34b1c62c3d6d31427034c37",
