@@ -1,0 +1,38 @@
+// use prisma-8
+
+model User {
+  id           String    @id @default(uuid())
+  username     String    @unique
+  hash         String
+  messages     Message[]
+  createdAt    DateTime  @default(now())
+  ownedServers Server[]  @relation("ServerOwners")
+  servers      Server[]
+}
+
+model Server {
+  id       String    @id @default(uuid())
+  owner    User      @relation("ServerOwners", fields: [ownerId], references: [id])
+  ownerId  String
+  members  User[]
+  messages Message[]
+}
+
+model ServerMembers {
+  server   Server @relation(fields: [serverId], references: [id])
+  user     User   @relation(fields: [userId], references: [id])
+  serverId String
+  userId   String
+
+  @@id([serverId, userId])
+}
+
+model Message {
+  id        String      @id @default(uuid())
+  content   String
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  String
+  server    Server   @relation(fields: [serverId], references: [id])
+  serverId  String
+  createdAt DateTime @default(now())
+}

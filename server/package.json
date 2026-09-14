@@ -7,19 +7,23 @@
     "dev": "tsx watch src/index.ts",
     "build": "tsc",
     "run": "node dist/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "contract:emit": "prisma contract emit"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "devDependencies": {
+    "@prisma/cli-engine": "^0.4.0",
     "@types/express": "^5.0.6",
     "@types/node": "^26.5.1",
+    "prisma": "^8.0.0-rc.15",
     "tsx": "^4.23.13",
     "typescript": "^7.0.2"
   },
   "dependencies": {
+    "@prisma/orm-postgres": "^8.0.0-rc.11",
     "dotenv": "^17.4.2",
     "express": "^5.2.1"
   },
