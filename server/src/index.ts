@@ -1,12 +1,12 @@
 import "dotenv/config";
 import express from 'express';
 import session from "express-session";
-import {passportConfig} from './config/passport';
+import {passportConfig} from './config/passport.js';
 import passport from "passport";
 import {PrismaSessionStore} from "@quixo3/prisma-session-store";
 import {createPrisma8SessionAdapter} from "./lib/prismaSessionAdapter";
 import {db} from "./prisma/db";
-import authRouter from "./routes/auth";
+import authRouter from "./routes/auth.js";
 
 const prismaAdapter = createPrisma8SessionAdapter(db, db.orm.public.Session, {
     modelName: "session"
