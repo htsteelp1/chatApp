@@ -27,12 +27,17 @@ app.use(session({
         // dbRecordIdFunction: undefined,
     })
 }));
+app.use(express.json());               // for JSON bodies
+app.use(express.urlencoded({ extended: true })); // for form-urlencoded bodies
+
 
 passportConfig();
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/auth", authRouter);
+
+
 
 
 app.listen(port, () => { console.log(`Server running at http://localhost:${port}`); });

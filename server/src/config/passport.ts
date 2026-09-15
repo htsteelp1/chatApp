@@ -15,7 +15,8 @@ export function passportConfig()
             if (!user) {
                 return done(null, false);
             }
-            const isMatch = await bcrypt.compare(password, user.password);
+            // @ts-ignore
+            const isMatch = await bcrypt.compare(password, user.hash);
             if (!isMatch) {
                 return done(null, false);
             }
@@ -26,11 +27,13 @@ export function passportConfig()
         }
     }))
     passport.serializeUser((user, done) => {
+        // @ts-ignore
         done(null, user.id);
     })
     passport.deserializeUser(async (id, done) => {
         try {
-        const user = await db.orm.public.User.where({ id }).all();
+        // @ts-ignore
+            const user = await db.orm.public.User.where({ id }).all();
         if (!user) {
             return done(null, false);
         }
