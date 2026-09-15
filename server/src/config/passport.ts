@@ -11,7 +11,7 @@ export function passportConfig()
             if (!username || !password) {
                 return done(null, false);
             }
-            const user = await db.orm.public.User.where({ username }).all();
+            const user = await db.orm.public.User.where({ username }).first();
             if (!user) {
                 return done(null, false);
             }

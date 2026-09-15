@@ -5,7 +5,7 @@ model User {
   username      String          @unique
   hash          String
   messages      Message[]
-  createdAt     DateTime        @default(now())
+  createdAt     TimestamptzString        @default(now())
   ownedServers  Server[]        @relation("ServerOwners")
   servers       Server[]
   serverMembers ServerMembers[]
@@ -36,12 +36,12 @@ model Message {
   authorId  String
   server    Server   @relation(fields: [serverId], references: [id])
   serverId  String
-  createdAt DateTime @default(now())
+  createdAt TimestamptzString @default(now())
 }
 
 model Session {
   id        String   @id
   sid       String   @unique
   data      String // MediumText may be needed for MySql
-  expiresAt DateTime
+  expiresAt TimestamptzString
 }

@@ -26,6 +26,7 @@
     "typescript": "^7.0.2"
   },
   "dependencies": {
+    "@js-temporal/polyfill": "^0.5.1",
     "@prisma/orm-postgres": "^8.0.0-rc.11",
     "@quixo3/prisma-session-store": "^3.1.21",
     "@types/express-session": "^1.19.0",
