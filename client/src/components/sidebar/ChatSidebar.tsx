@@ -11,11 +11,12 @@ import {ServerSidebarItem} from "@/components/sidebar/ServerSidebarItem.tsx";
 import {AvatarBlock} from "@/components/AvatarBlock.tsx";
 import {useEffect, useState} from "react";
 import {getMe, getServerList} from "@/api/me.ts";
+import {Link} from "react-router";
 
 
 export function ChatSidebar() {
     const [servers, setServers] = useState([{name: "Please Log In", id: 1}]);
-    const [user, setUser] = useState({name: "none", id:"2"});
+    const [user, setUser] = useState({name: "none", id: "2"});
     const [auth, setAuth] = useState(false)
     useEffect(() => {
         async function fetchData() {
@@ -33,21 +34,27 @@ export function ChatSidebar() {
             console.log(auth)
 
         }
+
         fetchData();
     }, []);
     const ServerItems = servers.map((server, index) => <ServerSidebarItem key={index} server={server}/>)
     return (
         <>
-            <Sidebar collapsible={"icon"} >
+            <Sidebar collapsible={"icon"}>
                 <SidebarContent>
                     <SidebarGroup>
                         <SidebarMenu>
-                            {ServerItems}
+                            {auth && ServerItems}
                         </SidebarMenu>
                     </SidebarGroup>
                 </SidebarContent>
                 <SidebarFooter>
                     {auth && <AvatarBlock user={user}/>}
+                    {!auth && <SidebarMenuItem>
+                        <SidebarMenuButton render={<Link to={"/login"}/>}>
+                            Log In
+                        </SidebarMenuButton>
+                    </SidebarMenuItem>}
                 </SidebarFooter>
             </Sidebar>
             <SidebarTrigger/>
