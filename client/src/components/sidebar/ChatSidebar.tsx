@@ -10,11 +10,13 @@ import {MoreHorizontal} from "lucide-react";
 import {ServerSidebarItem} from "@/components/sidebar/ServerSidebarItem.tsx";
 import {AvatarBlock} from "@/components/AvatarBlock.tsx";
 import {useEffect, useState} from "react";
-import {getServerList} from "@/api/me.ts";
+import {getMe, getServerList} from "@/api/me.ts";
 
 
 export function ChatSidebar() {
-    const [servers, setServers] = useState([{name: "Please Log In", id: 1}])
+    const [servers, setServers] = useState([{name: "Please Log In", id: 1}]);
+    const [user, setUser] = useState({name: "none", id:"2"});
+    const [auth, setAuth] = useState(false)
     useEffect(() => {
         async function fetchData() {
             const resServers = await getServerList();
@@ -22,7 +24,14 @@ export function ChatSidebar() {
                 setServers(resServers);
 
             }
-            console.log(resServers);
+            const resMe = await getMe();
+            if (resMe) {
+                setUser(resMe);
+                setAuth(true);
+            }
+            console.log(resMe)
+            console.log(auth)
+
         }
         fetchData();
     }, []);
@@ -38,7 +47,7 @@ export function ChatSidebar() {
                     </SidebarGroup>
                 </SidebarContent>
                 <SidebarFooter>
-                    <AvatarBlock user={{name: "test"}}/>
+                    {auth && <AvatarBlock user={user}/>}
                 </SidebarFooter>
             </Sidebar>
             <SidebarTrigger/>
