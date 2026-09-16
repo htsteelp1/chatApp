@@ -377,7 +377,7 @@
                   "kind": "scalar"
                 }
               },
-              "username": {
+              "name": {
                 "nullable": false,
                 "type": {
                   "codecId": "pg/text@1",
@@ -458,8 +458,8 @@
                 "id": {
                   "column": "id"
                 },
-                "username": {
-                  "column": "username"
+                "name": {
+                  "column": "name"
                 }
               },
               "namespaceId": "public",
@@ -751,7 +751,7 @@
                   "nativeType": "text",
                   "nullable": false
                 },
-                "username": {
+                "name": {
                   "codecId": "pg/text@1",
                   "nativeType": "text",
                   "nullable": false
@@ -767,7 +767,7 @@
               "uniques": [
                 {
                   "columns": [
-                    "username"
+                    "name"
                   ]
                 }
               ]
@@ -778,7 +778,7 @@
         "kind": "postgres-schema"
       }
     },
-    "storageHash": "369b2553699e69b4c07f762eecd9e7170eaca4fa6b705b6b25f0d973a177a398"
+    "storageHash": "6e8122878364d308d8659d5e26d2525858ac915793f91eb93c506a7faf9f5356"
   },
   "execution": {
     "executionHash": "28b426bc69b6998494a0651dbd0b876e546cfa8db34b1c62c3d6d31427034c37",

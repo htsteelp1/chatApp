@@ -9,11 +9,11 @@ export async function registerUser(req: Request, res: Response) {
             return;
         }
         const hash = await bcrypt.hash(req.body.password, 10);
-        const user = await db.orm.public.User.create({username: req.body.username, hash: hash});
+        const user = await db.orm.public.User.create({name: req.body.username, hash: hash});
         req.login(user, function(err) {
             console.log(err);
+            return res.redirect("/");
         });
-        return res.status(200).send({});
 
     }
     catch(err) {

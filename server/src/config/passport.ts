@@ -11,7 +11,7 @@ export function passportConfig()
             if (!username || !password) {
                 return done(null, false);
             }
-            const user = await db.orm.public.User.where({ username }).first();
+            const user = await db.orm.public.User.where({ name: username }).first();
             if (!user) {
                 return done(null, false);
             }
@@ -33,7 +33,7 @@ export function passportConfig()
     passport.deserializeUser(async (id, done) => {
         try {
         // @ts-ignore
-            const user = await db.orm.public.User.where({ id }).all();
+            const user = await db.orm.public.User.where({ id }).first();
         if (!user) {
             return done(null, false);
         }

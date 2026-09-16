@@ -2,7 +2,7 @@
 
 model User {
   id            String            @id @default(uuid())
-  username      String            @unique
+  name          String            @unique
   hash          String
   messages      Message[]
   createdAt     TimestamptzString @default(now())

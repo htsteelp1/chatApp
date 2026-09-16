@@ -32,9 +32,9 @@ app.use(express.json());               // for JSON bodies
 app.use(express.urlencoded({ extended: true })); // for form-urlencoded bodies
 
 
-passportConfig();
 app.use(passport.initialize());
 app.use(passport.session());
+passportConfig();
 
 app.use("/auth", authRouter);
 app.use("/api", apiRouter);
