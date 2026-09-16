@@ -24,6 +24,9 @@ export async function registerUser(req: Request, res: Response) {
 export async function getServerList(req: Request, res: Response) {
     try {
         const user = await db.orm.public.User.where({id: req.user.id}).include("servers").first();
+        if (!user) {
+            res.sendStatus(404);
+        }
         res.json(user.servers);
     }
     catch (e) {
