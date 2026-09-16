@@ -1,6 +1,6 @@
 import {
     Sidebar,
-    SidebarContent,
+    SidebarContent, SidebarFooter,
     SidebarGroup,
     SidebarMenu, SidebarMenuAction, SidebarMenuButton,
     SidebarMenuItem,
@@ -8,8 +8,13 @@ import {
 } from "../ui/sidebar.tsx";
 import {MoreHorizontal} from "lucide-react";
 import {ServerSidebarItem} from "@/components/sidebar/ServerSidebarItem.tsx";
+import {AvatarBlock} from "@/components/AvatarBlock.tsx";
+import {useEffect} from "react";
 
 export function ChatSidebar() {
+    useEffect(async () => {
+
+    }, []);
     return (
         <SidebarProvider>
             <Sidebar collapsible={"icon"} >
@@ -21,8 +26,11 @@ export function ChatSidebar() {
                         </SidebarMenu>
                     </SidebarGroup>
                 </SidebarContent>
+                <SidebarFooter>
+                    <AvatarBlock user={{name: "test"}}/>
+                </SidebarFooter>
             </Sidebar>
-            <SidebarTrigger />
+            <SidebarTrigger/>
         </SidebarProvider>
 
     )
