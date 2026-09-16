@@ -7,7 +7,7 @@ model User {
   messages      Message[]
   createdAt     TimestamptzString @default(now())
   ownedServers  Server[]          @relation("ServerOwners")
-  servers       Server[]
+  servers       Server[]  @relation("serverMembers")
   serverMembers ServerMembers[]
 }
 
@@ -22,8 +22,8 @@ model Server {
 }
 
 model ServerMembers {
-  server   Server @relation(fields: [serverId], references: [id])
-  user     User   @relation(fields: [userId], references: [id])
+  server   Server @relation("serverMembers", fields: [serverId], references: [id])
+  user     User   @relation("serverMembers", fields: [userId], references: [id])
   serverId String
   userId   String
 

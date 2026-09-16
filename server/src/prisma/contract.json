@@ -432,13 +432,26 @@
                 }
               },
               "servers": {
-                "cardinality": "1:N",
+                "cardinality": "N:M",
                 "on": {
                   "localFields": [
                     "id"
                   ],
                   "targetFields": [
-                    "ownerId"
+                    "userId"
+                  ]
+                },
+                "through": {
+                  "childColumns": [
+                    "serverId"
+                  ],
+                  "namespaceId": "public",
+                  "parentColumns": [
+                    "userId"
+                  ],
+                  "table": "serverMembers",
+                  "targetColumns": [
+                    "id"
                   ]
                 },
                 "to": {

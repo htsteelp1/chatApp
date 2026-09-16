@@ -905,10 +905,17 @@ type ContractBase = Omit<
                   readonly namespace: 'public' & NamespaceId;
                   readonly model: 'Server';
                 };
-                readonly cardinality: '1:N';
+                readonly cardinality: 'N:M';
                 readonly on: {
                   readonly localFields: readonly ['id'];
-                  readonly targetFields: readonly ['ownerId'];
+                  readonly targetFields: readonly ['userId'];
+                };
+                readonly through: {
+                  readonly table: 'serverMembers';
+                  readonly namespaceId: 'public';
+                  readonly parentColumns: readonly ['userId'];
+                  readonly childColumns: readonly ['serverId'];
+                  readonly targetColumns: readonly ['id'];
                 };
               };
             };
