@@ -8,7 +8,6 @@ function Login() {
             </div>
         </div>
     )
-
 }
 
 export {Login};

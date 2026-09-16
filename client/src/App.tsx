@@ -3,13 +3,18 @@ import {Login} from "./pages/Login.tsx"
 
 import './App.css'
 import {ChatSidebar} from "@/components/sidebar/ChatSidebar.tsx";
+import {SidebarInset, SidebarProvider} from "@/components/ui/sidebar.tsx";
 
 function App() {
     return (<>
-        <ChatSidebar/>
-        <Routes>
-            <Route path={"/login"} element={<Login></Login>}/>
-        </Routes>
+            <SidebarProvider>
+                <ChatSidebar/>
+                <SidebarInset>
+                    <Routes>
+                        <Route path={"/login"} element={<Login/>}/>
+                    </Routes>
+                </SidebarInset>
+            </SidebarProvider>
         </>
     )
 }
