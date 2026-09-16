@@ -33,3 +33,6 @@ export async function getServerList(req: Request, res: Response) {
         console.error(e)
     }
 }
+export async function returnUser(req: Request, res: Response) {
+    res.json(req.user)
+}
