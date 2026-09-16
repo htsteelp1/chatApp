@@ -18,7 +18,7 @@
     "@prisma/cli-engine": "^0.4.0",
     "@types/bcrypt": "^6.0.0",
     "@types/express": "^5.0.6",
-    "@types/node": "^26.5.1",
+    "@types/node": "^26.6.1",
     "@types/passport": "^1.0.17",
     "@types/passport-local": "^1.0.38",
     "prisma": "^8.0.0-rc.15",

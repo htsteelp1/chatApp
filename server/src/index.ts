@@ -7,6 +7,7 @@ import {PrismaSessionStore} from "@quixo3/prisma-session-store";
 import {createPrisma8SessionAdapter} from "./lib/prismaSessionAdapter";
 import {db} from "./prisma/db";
 import authRouter from "./routes/auth.js";
+import apiRouter from "./routes/api.js"
 
 const prismaAdapter = createPrisma8SessionAdapter(db, db.orm.public.Session, {
     modelName: "session"
@@ -36,6 +37,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/auth", authRouter);
+app.use("/api", apiRouter);
 
 
 

@@ -132,6 +132,13 @@
                   "kind": "scalar"
                 }
               },
+              "name": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
               "ownerId": {
                 "nullable": false,
                 "type": {
@@ -220,6 +227,9 @@
               "fields": {
                 "id": {
                   "column": "id"
+                },
+                "name": {
+                  "column": "name"
                 },
                 "ownerId": {
                   "column": "ownerId"
@@ -563,6 +573,11 @@
                   "nativeType": "text",
                   "nullable": false
                 },
+                "name": {
+                  "codecId": "pg/text@1",
+                  "nativeType": "text",
+                  "nullable": false
+                },
                 "ownerId": {
                   "codecId": "pg/text@1",
                   "nativeType": "text",
@@ -763,7 +778,7 @@
         "kind": "postgres-schema"
       }
     },
-    "storageHash": "9742a11d62946fecbb3564510fc88e67fec55bcb9555fcae719e68ae22c24d39"
+    "storageHash": "369b2553699e69b4c07f762eecd9e7170eaca4fa6b705b6b25f0d973a177a398"
   },
   "execution": {
     "executionHash": "28b426bc69b6998494a0651dbd0b876e546cfa8db34b1c62c3d6d31427034c37",
