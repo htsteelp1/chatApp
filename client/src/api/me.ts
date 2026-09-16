@@ -10,3 +10,15 @@ export async function getServerList() {
         console.error(e);
     }
 }
+export async function getMe() {
+    try {
+        const res = await fetch("/api/me/")
+        if (!res.ok) {
+            throw new Error(`Response status: ${res.status}`);
+        }
+        return await res.json();
+    }
+    catch (e) {
+        console.error(e)
+    }
+}
