@@ -20,7 +20,7 @@ export function AvatarBlock({user}) {
                         <span>{user.name}</span>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent>
-                        <DropdownMenuItem render={<a href={"/auth/logout"} />}>
+                        <DropdownMenuItem render={<Link to={"/auth/logout"} />}>
                             Log out
                         </DropdownMenuItem>
                     </DropdownMenuContent>

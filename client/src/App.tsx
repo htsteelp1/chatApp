@@ -12,6 +12,7 @@ function App() {
                 <SidebarInset>
                     <Routes>
                         <Route path={"/login"} element={<Login/>}/>
+                        <Route path={"*"} element={<div />} />
                     </Routes>
                 </SidebarInset>
             </SidebarProvider>
