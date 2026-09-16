@@ -7,9 +7,22 @@ import {
 } from "@/components/ui/dropdown-menu.tsx";
 import {ServerIcon} from "@/components/ServerIcon.tsx";
 import {MoreHorizontal} from "lucide-react";
-import {Link} from "react-router";
+import {Link, useNavigate} from "react-router";
+
+async function logOut(navigate) {
+    try {
+        const res = await fetch("/auth/logout", {method: "POST", credentials: "include"})
+    }
+    catch (e) {
+        console.error(e);
+    }
+    finally {
+        window.location.href = "/";
+    }
+}
 
 export function AvatarBlock({user}) {
+    const navigate = useNavigate();
     return (
         <SidebarMenu>
             <SidebarMenuItem>
@@ -20,7 +33,7 @@ export function AvatarBlock({user}) {
                         <span>{user.name}</span>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent>
-                        <DropdownMenuItem render={<Link to={"/auth/logout"} />}>
+                        <DropdownMenuItem onClick={() => logOut(navigate)}>
                             Log out
                         </DropdownMenuItem>
                     </DropdownMenuContent>
