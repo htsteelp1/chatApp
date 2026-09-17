@@ -46,6 +46,14 @@
     --radius-2xl: calc(var(--radius) * 1.8);
     --radius-3xl: calc(var(--radius) * 2.2);
     --radius-4xl: calc(var(--radius) * 2.6);
+  @keyframes message-highlight {
+  0%, 60% {
+    background-color: var(--accent);
+        }
+  100% {
+    background-color: transparent;
+        }
+    }
 }
 
 :root {
@@ -126,5 +134,17 @@
     }
   html {
     @apply font-sans;
+    }
+}
+
+@utility animate-message-highlight {
+    animation: message-highlight 3s ease-out forwards;
+}
+
+@utility scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
     }
 }

@@ -30,7 +30,7 @@ function hashColor(str) {
 export function ServerIcon({server}) {
     const color = hashColor(server.name);
     return (
-        <div className={"w-8 overflow hover:brightness-80 "}>
+        <div className={"w-8 hover:brightness-80 "}>
             <div className={`border-2 rounded-sm flex w-8 h-8 justify-center items-center ${colorClasses[color]}`}>
                 {server.name[0]}
             </div>

@@ -4,6 +4,7 @@ import {Login} from "./pages/Login.tsx"
 import './App.css'
 import {ChatSidebar} from "@/components/sidebar/ChatSidebar.tsx";
 import {SidebarInset, SidebarProvider} from "@/components/ui/sidebar.tsx";
+import {ChatPage} from "@/pages/Chat.tsx";
 
 function App() {
     return (<>
@@ -13,6 +14,7 @@ function App() {
                     <Routes>
                         <Route path={"/login"} element={<Login/>}/>
                         <Route path={"*"} element={<div />} />
+                        <Route path={"/chat/:id"} element={<ChatPage server={{name: "test"}}/>} />
                     </Routes>
                 </SidebarInset>
             </SidebarProvider>

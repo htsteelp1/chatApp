@@ -38,7 +38,7 @@
  */
 
 import { cn } from "@/lib/utils";
-import {
+import type {
   AvatarFallbackProps,
   AvatarImageProps,
   AvatarProps,
