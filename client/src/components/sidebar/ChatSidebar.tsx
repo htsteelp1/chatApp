@@ -12,6 +12,7 @@ import {AvatarBlock} from "@/components/AvatarBlock.tsx";
 import {useEffect, useState} from "react";
 import {getMe, getServerList} from "@/api/me.ts";
 import {Link} from "react-router";
+import {getServerById} from "@/api/servers.ts";
 
 
 export function ChatSidebar() {
@@ -30,8 +31,10 @@ export function ChatSidebar() {
                 setUser(resMe);
                 setAuth(true);
             }
-            console.log(resMe)
-            console.log(auth)
+            const resServer = await getServerById("1");
+            console.log(resServer);
+            console.log(resMe);
+            console.log(auth);
 
         }
 
