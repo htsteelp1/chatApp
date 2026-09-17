@@ -19,8 +19,8 @@ export function ChatPage({server}) {
                 <ChatHeaderMain>{server.name}</ChatHeaderMain>
             </ChatHeader>
             <ChatMessages>
-                <PrimaryMessage message={{content: "aadfadfa asdfadfasdfasdfads", user: {name: "Cool"}, timestamp: 1789590651}} />
-                <PrimaryMessage message={{content: "test", user: {name: "Tall"}, timestamp: 1789590651}} />
+                <PrimaryMessage message={{content: "aadfadfa asdfadfasdfasdfads", user: {name: "Cool"}, timestamp: "2026-09-16 16:54:50.652300 +00:00"}} />
+                <PrimaryMessage message={{content: "test", user: {name: "Tall"}, timestamp: "2026-09-16 16:55:50.652300 +00:00"}} />
             </ChatMessages>
         </Chat>
     )

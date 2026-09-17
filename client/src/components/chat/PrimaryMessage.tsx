@@ -17,7 +17,7 @@ export function PrimaryMessage({message} ) {
             <ChatEventBody>
                 <ChatEventTitle>
                     <span className={"font-medium"}>{message.user.name}</span>
-                    <ChatEventTime timestamp={message.timestamp} />
+                    <ChatEventTime timestamp={Date.parse(message.timestamp)} />
                 </ChatEventTitle>
                 <ChatEventContent>{message.content}</ChatEventContent>
             </ChatEventBody>
