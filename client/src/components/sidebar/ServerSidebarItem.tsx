@@ -7,7 +7,7 @@ export function ServerSidebarItem({server}) {
 
     return (
         <SidebarMenuItem>
-            <SidebarMenuButton className={"overflow-visible"} render={<Link to={`/chat/${server.id}`}/>}>
+            <SidebarMenuButton className={"overflow-visible mb-2"} render={<Link to={`/chat/${server.id}`}/>}>
                 <ServerIcon server={server}/>
                 <span>{server.name}</span>
             </SidebarMenuButton>
