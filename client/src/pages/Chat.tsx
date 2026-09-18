@@ -8,12 +8,33 @@ import {
     ChatEventTime,
     ChatEventTitle
 } from "@/components/chat/chat-event.tsx";
+import {useParams} from "react-router";
 import {ServerIcon} from "@/components/ServerIcon.tsx";
 import {PrimaryMessage} from "@/components/chat/PrimaryMessage.tsx";
 import {ChatToolbar, ChatToolbarTextarea} from "@/components/chat/chat-toolbar.tsx";
 import {Toolbar} from "@/components/chat/Toolbar.tsx";
+import {useEffect, useState} from "react";
+import {getServerById} from "@/api/servers.ts";
 
-export function ChatPage({server}) {
+
+
+export function ChatPage() {
+    const loadingServer = {name: "Loading", messages:
+            [{author: {name: "loading"}, content: "loading", createdAt: "2026-09-17 18:58:08.240823 +00:00"}]}
+    let params = useParams();
+    const [server, setServer] = useState(loadingServer);
+    useEffect(() => {
+        async function fetchData() {
+            const resServer = await getServerById(params.serverId);
+            setServer(resServer);
+        }
+        fetchData();
+    }, [params]);
+
+    function MapMessages() {
+        return server.messages.map((m, i) =>
+            <PrimaryMessage key={i} message={m} />)
+    }
 
 
     return (
@@ -22,13 +43,7 @@ export function ChatPage({server}) {
                 <ChatHeaderMain>{server.name}</ChatHeaderMain>
             </ChatHeader>
             <ChatMessages>
-                <PrimaryMessage message={{
-                    content: "aadfadfa asdfadfasdfasdfads",
-                    user: {name: "Cool"},
-                    timestamp: "2026-09-16 16:54:50.652300 +00:00"
-                }}/>
-                <PrimaryMessage
-                    message={{content: "test", user: {name: "Tall"}, timestamp: "2026-09-16 16:55:50.652300 +00:00"}}/>
+                <MapMessages />
             </ChatMessages>
             <Toolbar />
         </Chat>

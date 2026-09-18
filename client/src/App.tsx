@@ -14,7 +14,7 @@ function App() {
                     <Routes>
                         <Route path={"/login"} element={<Login/>}/>
                         <Route path={"*"} element={<div />} />
-                        <Route path={"/chat/:id"} element={<ChatPage server={{name: "test"}}/>} />
+                        <Route path={"/chat/:serverId"} element={<ChatPage server={{name: "test"}}/>} />
                     </Routes>
                 </SidebarInset>
             </SidebarProvider>
