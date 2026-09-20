@@ -1,7 +1,6 @@
-import {messageHandler} from "./handlers/messageHandler";
-import {roomHandler} from "./handlers/roomHandler";
 import {onlyForHandshake} from "./middlewares/onlyForHandshake";
 import {sessionMiddleware} from "../middlewares/sessionMiddleware";
+import {registerChatHandler} from "./handlers/chatHandler"
 import passport from "passport";
 
 export default async (io) => {
@@ -19,7 +18,6 @@ export default async (io) => {
     );
 
     io.on("connection", async (socket) => {
-        socket.on("room:join", roomHandler)
-        socket.on("chat:message", messageHandler)
+        registerChatHandler(io, socket);
     })
 }

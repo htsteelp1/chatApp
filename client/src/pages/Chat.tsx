@@ -29,6 +29,7 @@ export function ChatPage() {
             setServer(resServer);
         }
         fetchData();
+        socket
     }, [params]);
 
     function MapMessages() {
