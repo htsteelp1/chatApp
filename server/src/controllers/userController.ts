@@ -1,7 +1,7 @@
 import {db} from "../prisma/db";
 import type {NextFunction, Request, Response} from "express";
 import bcrypt from "bcrypt";
-import {createUser} from "../services/userService";
+import {createUser, getMemberships} from "../services/userService";
 
 export async function registerUser(req: Request, res: Response) {
     try {
@@ -23,11 +23,11 @@ export async function registerUser(req: Request, res: Response) {
 
 export async function getServerList(req: Request, res: Response) {
     try {
-        const user = await db.orm.public.User.where({id: req.user.id}).include("servers").first();
-        if (!user) {
+        const servers = await getMemberships(req.user.id);
+        if (!servers) {
             res.sendStatus(404);
         }
-        res.json(user.servers);
+        res.json(servers);
     }
     catch (e) {
         console.error(e)
