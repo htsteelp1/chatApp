@@ -12,7 +12,9 @@ import {Server} from "socket.io";
 
 const app = express();
 const server = createServer(app);
-const io = new Server(server);
+const io = new Server(server, {
+    cors: "http://localhost:"
+});
 const port = process.env.PORT || 3000;
 
 
