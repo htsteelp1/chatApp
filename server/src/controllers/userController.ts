@@ -1,7 +1,5 @@
-import {db} from "../prisma/db";
-import type {NextFunction, Request, Response} from "express";
-import bcrypt from "bcrypt";
-import {createUser, getMemberships} from "../services/userService";
+import type {Request, Response} from "express";
+import * as userService from "../services/userService"
 
 export async function registerUser(req: Request, res: Response) {
     try {
@@ -9,7 +7,7 @@ export async function registerUser(req: Request, res: Response) {
             res.status(400).send({});
             return;
         }
-        const user = await createUser(req.body.username, req.body.password)
+        const user = await userService.createUser(req.body.username, req.body.password)
         req.login(user, function(err) {
             console.log(err);
             return res.redirect("/");
@@ -23,7 +21,7 @@ export async function registerUser(req: Request, res: Response) {
 
 export async function getServerList(req: Request, res: Response) {
     try {
-        const servers = await getMemberships(req.user.id);
+        const servers = await userService.getMemberships(req.user.id);
         if (!servers) {
             res.sendStatus(404);
         }
