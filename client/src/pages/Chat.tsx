@@ -24,18 +24,26 @@ export function ChatPage() {
             [{author: {name: "loading"}, content: "loading", createdAt: "2026-09-17 18:58:08.240823 +00:00"}]}
     let params = useParams();
     const [server, setServer] = useState(loadingServer);
+    const [messages, setMessages] = useState([]);
     useEffect(() => {
         async function fetchData() {
             const resServer = await getServerById(params.serverId);
             setServer(resServer);
+            setMessages(resServer.messages);
         }
         fetchData();
         socket.emit("chat:join", params.serverId);
     }, [params]);
+    useEffect(() => {
+        function onMessage(message) {
+            setMessages((prevMessages) => [message, ...prevMessages]);
+        }
+        socket.on("message", onMessage);
+    }, []);
 
     function MapMessages() {
-        return server.messages.map((m, i) =>
-            <PrimaryMessage key={i} message={m} />)
+        return messages.map((m) =>
+            <PrimaryMessage key={m.id} message={m} />)
     }
 
 
