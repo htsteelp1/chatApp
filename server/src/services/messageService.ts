@@ -12,3 +12,11 @@ export async function getMessages(serverId: string) {
         .first();
     return server.messages;
 }
+export async function createMessage(content: string, authorId: string, serverId: string ) {
+    const message = await db.orm.public.Message.create({content, authorId, serverId});
+    if (!message) {
+        console.log("Unable to create message");
+        return;
+    }
+    return message;
+}
