@@ -1,22 +1,11 @@
 import {Chat} from "@/components/chat/chat.tsx";
-import {ChatHeader, ChatHeaderMain} from "@/components/chat/chat-header.tsx";
 import {ChatMessages} from "@/components/chat/chat-messages.tsx";
-import {
-    ChatEvent,
-    ChatEventAddon, ChatEventAvatar, ChatEventBody,
-    ChatEventContent,
-    ChatEventTime,
-    ChatEventTitle
-} from "@/components/chat/chat-event.tsx";
 import {useParams} from "react-router";
-import {ServerIcon} from "@/components/ServerIcon.tsx";
 import {PrimaryMessage} from "@/components/chat/PrimaryMessage.tsx";
-import {ChatToolbar, ChatToolbarTextarea} from "@/components/chat/chat-toolbar.tsx";
 import {Toolbar} from "@/components/chat/Toolbar.tsx";
 import {useEffect, useState} from "react";
 import {getServerById} from "@/api/servers.ts";
 import {socket} from "@/socket.ts";
-import {DropdownMenu} from "@/components/ui/dropdown-menu.tsx";
 import {MainHeader} from "@/components/chat/Header.tsx";
 import {AddMemberDialog} from "@/components/ui/AddMemberDialog.tsx";
 

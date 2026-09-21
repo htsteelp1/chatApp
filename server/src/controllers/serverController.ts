@@ -2,7 +2,6 @@ import type {Request, Response} from "express";
 import * as serverService from "../services/serverService.js"
 import * as messageService from "../services/messageService.js";
 import * as userService from "../services/userService.js"
-import {addMemberToServer} from "../services/serverService.js";
 
 export async function getServer(req: Request, res: Response) {
     try {
