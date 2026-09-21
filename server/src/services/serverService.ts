@@ -1,4 +1,4 @@
-import {db} from "../prisma/db";
+import {db} from "../prisma/db.js";
 
 export async function getServerForUser(serverID: String, userID: String) {
     const membership = await db.orm.public.ServerMembers

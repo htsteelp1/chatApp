@@ -1,6 +1,6 @@
 import type {Request, Response} from "express";
-import * as serverService from "../services/serverService"
-import * as messageService from "../services/messageService";
+import * as serverService from "../services/serverService.js"
+import * as messageService from "../services/messageService.js";
 
 export async function getServer(req: Request, res: Response) {
     try {

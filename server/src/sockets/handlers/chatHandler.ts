@@ -1,6 +1,6 @@
 import type {Server, Socket} from "socket.io";
-import {getServerForUser} from "../../services/serverService";
-import {createMessage} from "../../services/messageService";
+import {getServerForUser} from "../../services/serverService.js";
+import {createMessage} from "../../services/messageService.js";
 
 
 export async function registerChatHandler(io: Server, socket: Socket) {

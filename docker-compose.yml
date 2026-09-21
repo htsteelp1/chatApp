@@ -1,0 +1,40 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: dbname
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    ports:
+      - 6432:5432
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U user -d dbname" ]
+      interval: 5s
+      retries: 5
+
+  migrate:
+    build:
+      context: .
+      target: migrate
+    environment:
+      DATABASE_URL: postgres://user:password@db:5432/dbname
+    depends_on:
+      db:
+        condition: service_healthy
+
+  app:
+    build:
+      context: .
+      target: runtime
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgres://user:password@db:5432/dbname
+      SESSION_SECRET: CHANGEME
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+volumes:
+  dbdata:

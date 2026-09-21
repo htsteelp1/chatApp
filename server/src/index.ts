@@ -5,11 +5,11 @@ import {passportConfig} from './config/passport.js';
 import passport from "passport";
 import authRouter from "./routes/auth.js";
 import apiRouter from "./routes/api.js"
-import {sessionMiddleware} from "./middlewares/sessionMiddleware";
-import socketIo from "./sockets/sockets.ts"
+import {sessionMiddleware} from "./middlewares/sessionMiddleware.js";
+import socketIo from "./sockets/sockets.js"
 import {Server} from "socket.io";
 import {join} from "path";
-import {staticController} from "./controllers/staticController";
+import {staticController} from "./controllers/staticController.js";
 
 
 const app = express();

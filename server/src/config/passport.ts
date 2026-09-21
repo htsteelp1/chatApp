@@ -1,6 +1,6 @@
 import passport from 'passport';
 import {Strategy} from 'passport-local';
-import {db} from "../prisma/db";
+import {db} from "../prisma/db.js";
 import bcrypt from "bcrypt";
 
 export function passportConfig()

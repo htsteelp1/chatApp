@@ -1,6 +1,6 @@
 import {type Request, type Response, Router} from 'express';
 import passport from "passport";
-import {registerUser} from "../controllers/userController";
+import {registerUser} from "../controllers/userController.js";
 
 const router = Router();
 

@@ -1,8 +1,8 @@
 import "dotenv/config";
 import session from "express-session";
 import {PrismaSessionStore} from "@quixo3/prisma-session-store";
-import {createPrisma8SessionAdapter} from "../lib/prismaSessionAdapter";
-import {db} from "../prisma/db";
+import {createPrisma8SessionAdapter} from "../lib/prismaSessionAdapter.js";
+import {db} from "../prisma/db.js";
 
 const prismaAdapter = createPrisma8SessionAdapter(db, db.orm.public.Session, {
     modelName: "session"

@@ -1,6 +1,6 @@
-import {onlyForHandshake} from "./middlewares/onlyForHandshake";
-import {sessionMiddleware} from "../middlewares/sessionMiddleware";
-import {registerChatHandler} from "./handlers/chatHandler"
+import {onlyForHandshake} from "./middlewares/onlyForHandshake.js";
+import {sessionMiddleware} from "../middlewares/sessionMiddleware.js";
+import {registerChatHandler} from "./handlers/chatHandler.js"
 import passport from "passport";
 
 export default async (io) => {

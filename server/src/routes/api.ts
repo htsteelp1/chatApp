@@ -1,7 +1,7 @@
 import {Router} from "express";
-import {requireAuth} from "../middlewares/authRequired";
-import meRouter from "./api/me"
-import serverRouter from "./api/servers"
+import {requireAuth} from "../middlewares/authRequired.js";
+import meRouter from "./api/me.js"
+import serverRouter from "./api/servers.js"
 
 const router = Router();
 
