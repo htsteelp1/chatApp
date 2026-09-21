@@ -9,6 +9,9 @@ export function Toolbar() {
 
     function handleSubmit() {
         const mes = input.trim();
+        if (mes === "") {
+            return;
+        }
         sendMessage(mes);
         setInput("");
     }
