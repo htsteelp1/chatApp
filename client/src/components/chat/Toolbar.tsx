@@ -7,9 +7,10 @@ import {sendMessage} from "@/sockets/messageSocket.ts";
 export function Toolbar() {
     const [input, setInput] = useState()
 
-    function handleSubmit(e) {
+    function handleSubmit() {
         const mes = input.trim();
         sendMessage(mes);
+        setInput("");
     }
     return (
     <ChatToolbar>
