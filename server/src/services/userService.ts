@@ -9,3 +9,6 @@ export async function getMemberships(id: String) {
     const user = await db.orm.public.User.where({id}).include("servers").first();
     return user?.servers ?? [];
 }
+export async function getUserByName(name: String) {
+    return await db.orm.public.User.where({name}).first();
+}

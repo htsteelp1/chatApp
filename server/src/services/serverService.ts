@@ -7,3 +7,7 @@ export async function getServerForUser(serverID: String, userID: String) {
         .first();
     return membership.server;
 }
+export async function addMemberToServer(serverId: String, userId: String) {
+    return await db.orm.public.ServerMembers.create({serverId, userId});
+
+}
