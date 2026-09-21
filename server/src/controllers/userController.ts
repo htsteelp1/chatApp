@@ -16,6 +16,7 @@ export async function registerUser(req: Request, res: Response) {
     }
     catch(err) {
         console.error(err);
+        res.redirect("/login");
     }
 }
 
