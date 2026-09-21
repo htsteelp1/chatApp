@@ -15,6 +15,7 @@ import {ChatToolbar, ChatToolbarTextarea} from "@/components/chat/chat-toolbar.t
 import {Toolbar} from "@/components/chat/Toolbar.tsx";
 import {useEffect, useState} from "react";
 import {getServerById} from "@/api/servers.ts";
+import {socket} from "@/socket.ts";
 
 
 
@@ -29,7 +30,7 @@ export function ChatPage() {
             setServer(resServer);
         }
         fetchData();
-        socket
+        socket.emit("chat:join", params.serverId);
     }, [params]);
 
     function MapMessages() {
