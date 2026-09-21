@@ -8,6 +8,8 @@ import apiRouter from "./routes/api.js"
 import {sessionMiddleware} from "./middlewares/sessionMiddleware";
 import socketIo from "./sockets/sockets.ts"
 import {Server} from "socket.io";
+import {join} from "path";
+import {staticController} from "./controllers/staticController";
 
 
 const app = express();
@@ -30,6 +32,10 @@ passportConfig();
 app.use("/auth", authRouter);
 app.use("/api", apiRouter);
 
+if (process.env.NODE_ENV === "PROD") {
+    app.use(express.static(join(import.meta.dirname, "../../client/dist")));
+    app.get("/{*splat}", staticController);
+}
 
 socketIo(io);
 
