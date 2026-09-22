@@ -18,7 +18,7 @@ export function CreateServerDialog() {
                         <FieldGroup>
                             <Field>
                                 <Label htmlFor={"serverName"}>Server Name:</Label>
-                                <Input name="serverName" id="serverName" type="text" />
+                                <Input name="name" id="name" type="text" />
                             </Field>
                             <Field>
                                 <Button type="submit">Create Server</Button>
