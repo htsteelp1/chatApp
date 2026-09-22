@@ -11,7 +11,6 @@ import {Server} from "socket.io";
 import {join} from "path";
 import {staticController} from "./controllers/staticController.js";
 import {rateLimit} from "express-rate-limit";
-import {RateLimiterMemory} from "rate-limiter-flexible";
 
 
 const app = express();
