@@ -18,7 +18,7 @@ export function CreateServerDialog() {
                         <FieldGroup>
                             <Field>
                                 <Label htmlFor={"serverName"}>Server Name:</Label>
-                                <Input name="name" id="name" type="text" />
+                                <Input name="name" id="name" type="text" required minLength={3} maxLength={20}/>
                             </Field>
                             <Field>
                                 <Button type="submit">Create Server</Button>
