@@ -1,9 +1,11 @@
 import {Router} from "express";
-import {addMember, getServer} from "../../controllers/serverController.js";
+import {addMember, createServer, getServer} from "../../controllers/serverController.js";
 
 const router = Router();
 
-router.post("/:serverId/members", addMember)
+
+router.post("/:serverId/members", addMember);
 router.get("/:serverId", getServer);
+router.post("/", createServer);
 
 export default router;

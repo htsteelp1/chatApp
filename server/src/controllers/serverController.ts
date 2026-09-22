@@ -36,3 +36,17 @@ export async function addMember(req: Request, res: Response) {
         res.redirect("/")
     }
 }
+
+export async function createServer(req: Request, res: Response) {
+    try {
+        const server = await serverService.createServer(req.body.name, req.user.id);
+        if (!server) {
+            return res.redirect("/")
+        }
+        return res.redirect(`/chat/${server.id}`);
+    }
+    catch (e) {
+        console.error(e);
+        res.redirect("/")
+    }
+}

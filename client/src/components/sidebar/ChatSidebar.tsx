@@ -13,6 +13,7 @@ import {useEffect, useState} from "react";
 import {getMe, getServerList} from "@/api/me.ts";
 import {Link} from "react-router";
 import {getServerById} from "@/api/servers.ts";
+import {CreateServerDialog} from "@/components/CreateServerDialog.js";
 
 
 export function ChatSidebar() {
@@ -52,6 +53,7 @@ export function ChatSidebar() {
                     </SidebarGroup>
                 </SidebarContent>
                 <SidebarFooter>
+                    <CreateServerDialog />
                     {auth && <AvatarBlock user={user}/>}
                     {!auth && <SidebarMenuItem>
                         <SidebarMenuButton render={<Link to={"/login"}/>}>
