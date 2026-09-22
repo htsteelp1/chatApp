@@ -53,8 +53,11 @@ export function ChatSidebar() {
                     </SidebarGroup>
                 </SidebarContent>
                 <SidebarFooter>
-                    <CreateServerDialog />
-                    {auth && <AvatarBlock user={user}/>}
+
+                    {auth && <><CreateServerDialog />
+                    <AvatarBlock user={user}/>
+                    </>
+                    }
                     {!auth && <SidebarMenuItem>
                         <SidebarMenuButton render={<Link to={"/login"}/>}>
                             Log In

@@ -39,6 +39,8 @@ export function LoginForm({
                   type="text"
                   placeholder="Username"
                   autoComplete={"off"}
+                  maxLength={20}
+                  pattern={"^[A-Za-z0-9_-]+$"}
                   required
                 />
               </Field>
@@ -46,7 +48,7 @@ export function LoginForm({
                 <div className="flex items-center">
                   <FieldLabel htmlFor="password">Password</FieldLabel>
                 </div>
-                <Input id="password" name={"password"} type="password" required />
+                <Input id="password" name={"password"} type="password" maxLength={20} required/>
               </Field>
               <Field>
                 <Button type="submit">Login</Button>

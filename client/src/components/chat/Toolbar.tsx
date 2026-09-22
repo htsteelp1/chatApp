@@ -19,7 +19,9 @@ export function Toolbar() {
     <ChatToolbar>
         <ChatToolbarTextarea value={input}
                              onChange={(e) => setInput(e.target.value)}
-                             onSubmit={handleSubmit}/>
+                             onSubmit={handleSubmit}
+                             maxLength={500}
+        />
     </ChatToolbar>
     )
 }

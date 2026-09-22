@@ -3,6 +3,7 @@ import {sessionMiddleware} from "../middlewares/sessionMiddleware.js";
 import {registerChatHandler} from "./handlers/chatHandler.js"
 import passport from "passport";
 
+
 export default async (io) => {
     io.engine.use(onlyForHandshake(sessionMiddleware));
     io.engine.use(onlyForHandshake(passport.session()));
@@ -18,6 +19,7 @@ export default async (io) => {
     );
 
     io.on("connection", async (socket) => {
+
         registerChatHandler(io, socket);
     })
 }

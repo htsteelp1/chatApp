@@ -14,12 +14,12 @@ export function PrimaryMessage({message} ) {
             <ChatEventAddon>
                 <ServerIcon server={message.author}/>
             </ChatEventAddon>
-            <ChatEventBody>
+            <ChatEventBody className={"min-w-0"}>
                 <ChatEventTitle>
                     <span className={"font-medium"}>{message.author.name}</span>
                     <ChatEventTime timestamp={Date.parse(message.createdAt)} />
                 </ChatEventTitle>
-                <ChatEventContent>{message.content}</ChatEventContent>
+                <ChatEventContent className={"wrap-break-word"} >{message.content}</ChatEventContent>
             </ChatEventBody>
         </ChatEvent>
     )

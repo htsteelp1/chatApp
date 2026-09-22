@@ -10,12 +10,22 @@ import socketIo from "./sockets/sockets.js"
 import {Server} from "socket.io";
 import {join} from "path";
 import {staticController} from "./controllers/staticController.js";
+import {rateLimit} from "express-rate-limit";
 
 
 const app = express();
 const server = createServer(app);
-const io = new Server(server);
+const io = new Server(server, {
+    maxHttpBufferSize: 1e4
+});
 const port = process.env.PORT || 3000;
+
+const limiter = rateLimit({
+    windowMs: 60 * 1000,
+    max: 50,
+});
+
+app.use("/api", limiter)
 
 
 app.use(sessionMiddleware);
