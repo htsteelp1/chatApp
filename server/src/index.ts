@@ -16,7 +16,9 @@ import {RateLimiterMemory} from "rate-limiter-flexible";
 
 const app = express();
 const server = createServer(app);
-const io = new Server(server);
+const io = new Server(server, {
+    maxHttpBufferSize: 1e4
+});
 const port = process.env.PORT || 3000;
 
 const limiter = rateLimit({
