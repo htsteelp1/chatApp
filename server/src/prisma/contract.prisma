@@ -1,24 +1,22 @@
 // use prisma-8
 
 model User {
-  id            String            @id @default(uuid())
-  name          String            @unique
-  hash          String
-  messages      Message[]
-  createdAt     TimestamptzString @default(now())
-  ownedServers  Server[]          @relation("ServerOwners")
-  servers       Server[]  @relation("serverMembers")
-  serverMembers ServerMembers[]
+  id           String            @id @default(uuid())
+  name         String            @unique
+  hash         String
+  messages     Message[]
+  createdAt    TimestamptzString @default(now())
+  ownedServers Server[]          @relation("ServerOwners")
+  servers      Server[]          @relation("serverMembers")
 }
 
 model Server {
-  id            String          @id @default(uuid())
-  owner         User            @relation("ServerOwners", fields: [ownerId], references: [id])
-  name          String
-  ownerId       String
-  members       User[]
-  messages      Message[]
-  serverMembers ServerMembers[]
+  id       String    @id @default(uuid())
+  owner    User      @relation("ServerOwners", fields: [ownerId], references: [id])
+  name     String
+  ownerId  String
+  members  User[]    @relation("serverMembers")
+  messages Message[]
 }
 
 model ServerMembers {

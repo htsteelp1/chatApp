@@ -206,21 +206,6 @@
                   "model": "User",
                   "namespace": "public"
                 }
-              },
-              "serverMembers": {
-                "cardinality": "1:N",
-                "on": {
-                  "localFields": [
-                    "id"
-                  ],
-                  "targetFields": [
-                    "serverId"
-                  ]
-                },
-                "to": {
-                  "model": "ServerMembers",
-                  "namespace": "public"
-                }
               }
             },
             "storage": {
@@ -413,21 +398,6 @@
                 },
                 "to": {
                   "model": "Server",
-                  "namespace": "public"
-                }
-              },
-              "serverMembers": {
-                "cardinality": "1:N",
-                "on": {
-                  "localFields": [
-                    "id"
-                  ],
-                  "targetFields": [
-                    "userId"
-                  ]
-                },
-                "to": {
-                  "model": "ServerMembers",
                   "namespace": "public"
                 }
               },
