@@ -10,12 +10,21 @@ import socketIo from "./sockets/sockets.js"
 import {Server} from "socket.io";
 import {join} from "path";
 import {staticController} from "./controllers/staticController.js";
+import {rateLimit} from "express-rate-limit";
+import {RateLimiterMemory} from "rate-limiter-flexible";
 
 
 const app = express();
 const server = createServer(app);
 const io = new Server(server);
 const port = process.env.PORT || 3000;
+
+const limiter = rateLimit({
+    windowMs: 60 * 1000,
+    max: 50,
+});
+
+app.use("/api", limiter)
 
 
 app.use(sessionMiddleware);
