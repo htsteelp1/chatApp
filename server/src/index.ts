@@ -14,9 +14,7 @@ import {staticController} from "./controllers/staticController.js";
 
 const app = express();
 const server = createServer(app);
-const io = new Server(server, {
-    cors: "http://localhost:"
-});
+const io = new Server(server);
 const port = process.env.PORT || 3000;
 
 
