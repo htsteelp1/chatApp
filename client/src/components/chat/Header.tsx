@@ -1,11 +1,11 @@
 import {
     DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
+    DropdownMenuContent, DropdownMenuGroup,
+    DropdownMenuItem, DropdownMenuSeparator,
     DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu.tsx";
 import {Button} from "@/components/ui/button.tsx";
-import {MoreHorizontal} from "lucide-react";
+import {MoreHorizontal, Trash} from "lucide-react";
 import {ChatHeader, ChatHeaderMain} from "@/components/chat/chat-header.tsx";
 
 export function MainHeader({server, setDialogOpen}) {
@@ -20,14 +20,23 @@ export function MainHeader({server, setDialogOpen}) {
                             <MoreHorizontal/>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent>
-                            <DropdownMenuItem onClick={() => setDialogOpen(true)}>
-                                Add Members
-                            </DropdownMenuItem>
+                            <DropdownMenuGroup>
+                                <DropdownMenuItem onClick={() => setDialogOpen(true)}>
+                                    Add Members
+                                </DropdownMenuItem>
+                            </DropdownMenuGroup>
+                            <DropdownMenuSeparator/>
+                            <DropdownMenuGroup>
+                                <DropdownMenuItem variant={"destructive"}>
+                                    <Trash/>
+                                    Leave Server
+                                </DropdownMenuItem>
+                            </DropdownMenuGroup>
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </ChatHeaderMain>
             </ChatHeader>
-            </>
+        </>
 
     )
 }
