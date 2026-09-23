@@ -7,8 +7,11 @@ import {
 import {Button} from "@/components/ui/button.tsx";
 import {MoreHorizontal, Trash} from "lucide-react";
 import {ChatHeader, ChatHeaderMain} from "@/components/chat/chat-header.tsx";
+import {leaveServer} from "@/api/servers.ts";
+import {useParams} from "react-router";
 
 export function MainHeader({server, setDialogOpen}) {
+    const params = useParams();
 
 
     return (
@@ -27,7 +30,7 @@ export function MainHeader({server, setDialogOpen}) {
                             </DropdownMenuGroup>
                             <DropdownMenuSeparator/>
                             <DropdownMenuGroup>
-                                <DropdownMenuItem variant={"destructive"}>
+                                <DropdownMenuItem variant={"destructive"} onClick={async () => await leaveServer(params.serverId)}>
                                     <Trash/>
                                     Leave Server
                                 </DropdownMenuItem>
