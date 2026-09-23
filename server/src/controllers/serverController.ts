@@ -50,3 +50,12 @@ export async function createServer(req: Request, res: Response) {
         res.redirect("/")
     }
 }
+export async function deleteMemberFromServer(req: Request, res: Response) {
+    try {
+        await serverService.removeMemberFromServer(req.params.serverId, req.user.id);
+        return res.sendStatus(200);
+    }
+    catch (e) {
+        console.error(e);
+    }
+}

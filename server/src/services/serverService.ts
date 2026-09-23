@@ -20,3 +20,10 @@ export async function createServer(name, userId: String) {
         members: (m) => m.connect({id: userId}),
     });
 }
+
+export async function removeMemberFromServer(serverId, userId) {
+    return await db.orm.public.ServerMembers.where({
+        serverId,
+        userId
+    }).delete()
+}
