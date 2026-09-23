@@ -40,7 +40,7 @@ passportConfig();
 app.use("/auth", authRouter);
 app.use("/api", apiRouter);
 
-if (process.env.NODE_ENV === "PROD") {
+if (process.env.NODE_ENV === "production") {
     app.use(express.static(join(import.meta.dirname, "../../client/dist")));
     app.get("/{*splat}", staticController);
 }
