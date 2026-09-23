@@ -25,7 +25,7 @@ COPY server/package*.json .
 RUN npm ci --omit=dev
 
 FROM base AS runtime
-ENV NODE_ENV=PROD
+ENV NODE_ENV=production
 WORKDIR /app
 COPY --from=prod-deps /app/server/node_modules ./server/node_modules
 COPY --from=server-build /app/server/dist ./server/dist
