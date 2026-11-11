@@ -3,8 +3,9 @@ import {migrate} from "drizzle-orm/better-sqlite3/migrator"
 import path from "node:path"
 import Database from "better-sqlite3";
 import {DATA, MIGRATIONS} from "../config/paths.js";
+import {relations} from "./schema.js";
 
 const sqlite = new Database(path.join(DATA, "./app.db"));
 sqlite.pragma("journal_mode = WAL")
-export const db = drizzle({client: sqlite});
+export const db = drizzle({client: sqlite, relations});
 await migrate(db, {migrationsFolder: MIGRATIONS});
