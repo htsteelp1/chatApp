@@ -42,9 +42,9 @@
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
-    "moduleResolution": "bundler",
+    "moduleResolution": "nodenext",
     "resolveJsonModule": true,
-    "noCheck": true
+    "noCheck": false
   },
   "include": ["src/**/*"]
 }
