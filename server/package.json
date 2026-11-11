@@ -15,7 +15,6 @@
   "license": "ISC",
   "type": "module",
   "devDependencies": {
-    "@prisma/cli-engine": "^0.4.0",
     "@types/bcrypt": "^6.0.0",
     "@types/express": "^5.0.6",
     "@types/node": "^26.6.6",
@@ -23,15 +22,11 @@
     "@types/passport-local": "^1.0.38",
     "@types/socket.io": "^3.0.1",
     "drizzle-kit": "^1.0.0-rc.5",
-    "prisma": "^8.0.0-rc.15",
-    "tsup": "^9.0.0",
     "tsx": "^4.23.13",
     "typescript": "^7.0.2"
   },
   "dependencies": {
     "@js-temporal/polyfill": "^0.5.1",
-    "@prisma/orm-postgres": "^8.0.0-rc.11",
-    "@quixo3/prisma-session-store": "^3.1.21",
     "@types/express-session": "^1.19.0",
     "bcrypt": "^6.0.0",
     "better-sqlite3": "^13.0.3",
