@@ -28,18 +28,18 @@ export const messages = t.sqliteTable("messages", {
 })
 
 
-export const serverMemberships = t.sqliteTable("serverMemberships", {
+export const memberships = t.sqliteTable("memberships", {
     userId: t.integer("user_id").notNull().references(() => users.id, {onDelete: "cascade"}),
     serverId: t.integer("server_id").notNull().references(() => servers.id, {onDelete: "cascade"}),
 }, (table) => [t.primaryKey({columns: [table.userId, table.serverId]})])
 
 
-export const relations = defineRelations({users, servers, messages, serverMemberships}, (r) => ({
+export const relations = defineRelations({users, servers, messages, memberships}, (r) => ({
     users: {
         messages: r.many.messages(),
         ownedServers: r.many.servers({alias: "ownedServer"}),
         servers: r.many.servers({alias: "serverUsers"}),
-        memberships: r.many.serverMemberships()
+        memberships: r.many.memberships()
     },
     servers: {
         owner: r.one.users({
@@ -48,11 +48,11 @@ export const relations = defineRelations({users, servers, messages, serverMember
             alias: "ownedServer"
         }),
         users: r.many.users({
-            from: r.servers.id.through(r.serverMemberships.serverId),
-            to: r.users.id.through(r.serverMemberships.userId),
+            from: r.servers.id.through(r.memberships.serverId),
+            to: r.users.id.through(r.memberships.userId),
             alias: "serverUsers"
         }),
-        memberships: r.many.serverMemberships({})
+        memberships: r.many.memberships({})
     },
     messages: {
         author: r.one.users({
@@ -60,13 +60,13 @@ export const relations = defineRelations({users, servers, messages, serverMember
             to: r.users.id
         })
     },
-    serverMemberships: {
+    memberships: {
         server: r.one.servers({
-            from: r.serverMemberships.serverId,
+            from: r.memberships.serverId,
             to: r.servers.id
         }),
         user: r.one.users({
-            from: r.serverMemberships.userId,
+            from: r.memberships.userId,
             to: r.users.id
         })
     }
