@@ -9,6 +9,7 @@ const messageLimiter = new RateLimiterMemory({
 })
 
 export async function registerChatHandler(io: Server, socket: Socket) {
+    // @ts-expect-error
     const user = socket.request.user;
     async function onJoin(serverId: String) {
         socket.leave(socket.data.roomId)
@@ -22,7 +23,7 @@ export async function registerChatHandler(io: Server, socket: Socket) {
         return socket.join(server.id);
     }
 
-    async function onMessage(reqMessage) {
+    async function onMessage(reqMessage: any) {
         try {
             await messageLimiter.consume(socket.id);
         }

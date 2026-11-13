@@ -1,17 +1,17 @@
 {
   "version": "7",
   "dialect": "sqlite",
-  "id": "63f53a32-71e6-4eeb-9bb5-32f3cc3e5fce",
+  "id": "e9e79172-c5b7-42d0-bb2b-e49ac1b938e7",
   "prevIds": [
     "00000000-0000-0000-0000-000000000000"
   ],
   "ddl": [
     {
-      "name": "messages",
+      "name": "memberships",
       "entityType": "tables"
     },
     {
-      "name": "serverMemberships",
+      "name": "messages",
       "entityType": "tables"
     },
     {
@@ -21,6 +21,26 @@
     {
       "name": "users",
       "entityType": "tables"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "user_id",
+      "entityType": "columns",
+      "table": "memberships"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "server_id",
+      "entityType": "columns",
+      "table": "memberships"
     },
     {
       "type": "integer",
@@ -71,26 +91,6 @@
       "name": "server_id",
       "entityType": "columns",
       "table": "messages"
-    },
-    {
-      "type": "integer",
-      "notNull": true,
-      "autoincrement": false,
-      "default": null,
-      "generated": null,
-      "name": "user_id",
-      "entityType": "columns",
-      "table": "serverMemberships"
-    },
-    {
-      "type": "integer",
-      "notNull": true,
-      "autoincrement": false,
-      "default": null,
-      "generated": null,
-      "name": "server_id",
-      "entityType": "columns",
-      "table": "serverMemberships"
     },
     {
       "type": "integer",
@@ -183,6 +183,36 @@
       "onUpdate": "NO ACTION",
       "onDelete": "CASCADE",
       "nameExplicit": false,
+      "name": "fk_memberships_user_id_users_id_fk",
+      "entityType": "fks",
+      "table": "memberships"
+    },
+    {
+      "columns": [
+        "server_id"
+      ],
+      "tableTo": "servers",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_memberships_server_id_servers_id_fk",
+      "entityType": "fks",
+      "table": "memberships"
+    },
+    {
+      "columns": [
+        "user_id"
+      ],
+      "tableTo": "users",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
       "name": "fk_messages_user_id_users_id_fk",
       "entityType": "fks",
       "table": "messages"
@@ -201,36 +231,6 @@
       "name": "fk_messages_server_id_servers_id_fk",
       "entityType": "fks",
       "table": "messages"
-    },
-    {
-      "columns": [
-        "user_id"
-      ],
-      "tableTo": "users",
-      "columnsTo": [
-        "id"
-      ],
-      "onUpdate": "NO ACTION",
-      "onDelete": "CASCADE",
-      "nameExplicit": false,
-      "name": "fk_serverMemberships_user_id_users_id_fk",
-      "entityType": "fks",
-      "table": "serverMemberships"
-    },
-    {
-      "columns": [
-        "server_id"
-      ],
-      "tableTo": "servers",
-      "columnsTo": [
-        "id"
-      ],
-      "onUpdate": "NO ACTION",
-      "onDelete": "CASCADE",
-      "nameExplicit": false,
-      "name": "fk_serverMemberships_server_id_servers_id_fk",
-      "entityType": "fks",
-      "table": "serverMemberships"
     },
     {
       "columns": [
@@ -253,9 +253,9 @@
         "server_id"
       ],
       "nameExplicit": false,
-      "name": "serverMemberships_pk",
+      "name": "memberships_pk",
       "entityType": "pks",
-      "table": "serverMemberships"
+      "table": "memberships"
     },
     {
       "columns": [

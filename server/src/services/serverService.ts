@@ -1,29 +1,40 @@
-import {db} from "../prisma/db.js";
+import {db} from "../db/index.js";
+import {memberships, servers} from "../db/schema.js";
+import {and, eq} from "drizzle-orm";
 
-export async function getServerForUser(serverID: String, userID: String) {
-    const membership = await db.orm.public.ServerMembers
-        .where({serverId: serverID, userId: userID})
-        .include("server")
-        .first();
-    return membership.server;
+export async function getServerForUser(serverId: number, userId: number) {
+    const membership = await db.query.memberships.findFirst({
+        where: {
+            userId,
+            serverId,
+        },
+        with: {
+            server: true
+        }
+    })
+    return membership?.server;
 }
 
-export async function addMemberToServer(serverId: String, userId: String) {
-    return await db.orm.public.ServerMembers.create({serverId, userId});
-
-}
-
-export async function createServer(name, userId: String) {
-    return await db.orm.public.Server.create({
-        name,
-        ownerId: userId,
-        members: (m) => m.connect({id: userId}),
+export async function createServer(name: string, userId: number) {
+    return db.transaction(tx => {
+        const s = tx.insert(servers).values({name, ownerId: userId}).returning().get();
+        tx.insert(memberships).values({userId, serverId: s!.id});
+        return s;
     });
 }
 
-export async function removeMemberFromServer(serverId, userId) {
-    return await db.orm.public.ServerMembers.where({
-        serverId,
-        userId
-    }).delete()
+export async function removeMemberFromServer(serverId: number, userId: number) {
+    await db.delete(memberships).where(and(eq(memberships.userId, userId), eq(memberships.serverId, serverId)));
+}
+
+export async function addMemberToServer(serverId: number, userId: number) {
+    const server = await db.query.servers.findFirst({
+        where: {
+            members: {
+                id: userId
+            },
+            id: serverId
+        }
+    })
+
 }

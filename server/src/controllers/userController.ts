@@ -22,7 +22,7 @@ export async function registerUser(req: Request, res: Response) {
 
 export async function getServerList(req: Request, res: Response) {
     try {
-        const servers = await userService.getMemberships(req.user.id);
+        const servers = await userService.getServers(req.user!.id);
         if (!servers) {
             res.sendStatus(404);
         }

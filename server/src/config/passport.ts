@@ -1,7 +1,8 @@
 import passport from 'passport';
 import {Strategy} from 'passport-local';
-import {db} from "../prisma/db.js";
+import {db} from "../db/index.js";
 import bcrypt from "bcrypt";
+import {getUserById} from "../services/userService.js";
 
 export function passportConfig()
 {
@@ -11,7 +12,7 @@ export function passportConfig()
             if (!username || !password) {
                 return done(null, false);
             }
-            const user = await db.orm.public.User.where({ name: username }).first();
+            const user = await db.query.users.findFirst({where: {name: username}})
             if (!user) {
                 return done(null, false);
             }
@@ -33,7 +34,7 @@ export function passportConfig()
     passport.deserializeUser(async (id, done) => {
         try {
         // @ts-ignore
-            const user = await db.orm.public.User.where({ id }).first();
+            const user = await getUserById(id);
         if (!user) {
             return done(null, false);
         }

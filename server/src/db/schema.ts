@@ -47,7 +47,7 @@ export const relations = defineRelations({users, servers, messages, memberships}
             to: r.users.id,
             alias: "ownedServer"
         }),
-        users: r.many.users({
+        members: r.many.users({
             from: r.servers.id.through(r.memberships.serverId),
             to: r.users.id.through(r.memberships.userId),
             alias: "serverUsers"
@@ -71,3 +71,5 @@ export const relations = defineRelations({users, servers, messages, memberships}
         })
     }
 }))
+
+export type User = typeof users.$inferSelect;

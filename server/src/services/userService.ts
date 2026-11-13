@@ -4,15 +4,24 @@ import {users} from "../db/schema.js";
 
 export async function createUser(name: string, password: string) {
     const hash = await bcrypt.hash(password, 10);
-    return await db.insert(users).values({
+    const [user] = await db.insert(users).values({
         name,
         hash,
-    });
+    }).returning();
+    return user!;
 }
-// export async function getMembershipsByUserId(id: String) {
-//     const user = await db.query.users.findFirst();
-//     return user?.servers ?? [];
-// } move this to serverMembershipsService.ts
+export async function getServers(id: number) {
+    const user = await db.query.users.findFirst({
+        where: {id},
+        with: {
+            servers: true
+        }
+    });
+    return user?.servers;
+}
 export async function getUserByName(name: string) {
     return await db.query.users.findFirst({where: {name: name}})
+}
+export async function getUserById(id: number) {
+    return await db.query.users.findFirst({where: {id}});
 }

@@ -50,9 +50,12 @@ export async function createServer(req: Request, res: Response) {
         res.redirect("/")
     }
 }
-export async function deleteMemberFromServer(req: Request, res: Response) {
+export async function removeMemberFromServer(req: Request, res: Response) {
     try {
-        await serverService.removeMemberFromServer(req.params.serverId, req.user.id);
+        if (!Number(req.params.serverId)) {
+            throw new Error("No serverId in request")
+        }
+        await serverService.removeMemberFromServer(Number(req.params.serverId), req.user!.id);
         return res.sendStatus(200);
     }
     catch (e) {
